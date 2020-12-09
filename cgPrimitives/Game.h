@@ -28,6 +28,7 @@ private:
 		linea,
 		curva,
 		circulo,
+		ninguna,
 	};
 	struct Vector 
 	{

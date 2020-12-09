@@ -60,8 +60,11 @@ void Game::Init()
 	 //Problema3(100, 100, 300, 200);
 	 //Problema3(300, 200, 400, 200);
 	 //Problema3(100, 100, 400, 200);
-	estrella();
-
+	recta(100, 100, 150, 100);
+	recta(99, 100, 100, 150);
+	recta(100, 149, 150, 150);
+	recta(150, 100, 150, 150);
+	opcion = primitiva::ninguna;
 	
 	m_image->Load();
 }
@@ -262,7 +265,7 @@ void Game::Update(unsigned int delta)
 	//m_image->PutPixel(x, y, 0, 0, 0, 255);
 	//medio += 2;
 	
-	opcion = primitiva::linea;
+	//opcion = primitiva::linea;
 	switch(opcion)
 	{
 		case primitiva::linea:
@@ -273,6 +276,7 @@ void Game::Update(unsigned int delta)
 				Vector click2 = clicks.top();
 				clicks.pop();
 				recta(click1.x, click1.y, click2.x, click2.y);
+				opcion = primitiva::ninguna;
 			}
 			break;
 	}
@@ -283,10 +287,17 @@ bool Game::MouseInput(int x, int y, bool leftbutton)
 {
 	if (leftbutton) 
 	{
-		Vector click;
-		click.x = x;
-		click.y = y;
-		clicks.push(click);
+		if (x >= 100 && x < 150 && y >= 100 && y < 150) 
+		{
+			opcion = primitiva::linea;
+		}
+		else 
+		{
+			Vector click;
+			click.x = x;
+			click.y = y;
+			clicks.push(click);
+		}
 	}
 	return false;
 }
