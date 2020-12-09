@@ -18,6 +18,8 @@ private:
 	GLint bufferWidth, bufferHeight;
 	float deltaTime{ 0 };
 	float lastTime{ 0 };
+	static int MouseX;
+	static int MouseY;
 	ServiceConfiguration *serviceConfiguration;
 private:
 	void init();
@@ -28,7 +30,7 @@ public:
 	static Platform* GetPtr();
 	void RenderClear();
 	void RenderPresent();
-	void CheckEvent(GameState* obj, bool (GameState::* keyboard)(std::map<int, bool>), bool (GameState::* mouse)(int, int, bool));
+	void CheckEvent(GameState* obj, bool (GameState::* keyboard)(std::map<int, bool>), bool (GameState::* mouse)(int, int,bool));
 	int GetWidth();
 	int GetHeight();
 	float GetDeltaTime();

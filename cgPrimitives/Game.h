@@ -22,6 +22,18 @@ private:
 	Player *player = nullptr;
 	Graphic::GUI* gui = nullptr;
 	Graphic::GUILine* m_image = nullptr;
+	int opcion;
+	enum primitiva
+	{
+		linea,
+		curva,
+		circulo,
+	};
+	struct Vector 
+	{
+		int x, y;
+	};
+	std::stack<Vector> clicks;
 public:
 	Game();
 	~Game();
@@ -33,4 +45,11 @@ public:
 	void Close() override;
 	void LoadShaders();
 	void LoadModels(const std::map<std::string, std::string>& models);
+	void recta(float x, float y, float x2, float y2);
+	void rectasindiv(float x, float y, float x2, float y2);
+	void bresenham(float x, float y, float x2, float y2);
+	void bresenhamcurva(float x, float y, float x2, float y2, float x3, float y3, float x4, float y4);
+	void CirculoBresenham(float x1, float y1, int r);
+	void Problema3(float x1, float y1, float x2, float y2);
+	void estrella();
 };

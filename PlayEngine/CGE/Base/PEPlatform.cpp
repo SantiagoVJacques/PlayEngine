@@ -10,6 +10,8 @@ bool (GameState::* Platform::keyboard)(std::map<int, bool>);
 bool (GameState::* Platform::mouse)(int, int, bool);
 std::map<int, bool> Platform::keys;
 bool Platform::leftButtonMouse;
+int Platform::MouseX;
+int Platform::MouseY;
 
 Platform::Platform(std::string name)
 {
@@ -63,7 +65,7 @@ void Platform::init()
 
 	// Set the current context
 	glfwMakeContextCurrent(mainWindow);
-	glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	// Allow modern extension access
 	glewExperimental = GL_TRUE;
 
@@ -157,12 +159,14 @@ void  Platform::HandleKeys(GLFWwindow* window, int key, int code, int action, in
 
 void Platform::HandleMousePosition(GLFWwindow* window, double x, double y)
 {
-	(Platform::obj->*Platform::mouse)(x, y, leftButtonMouse);
+	MouseX = x;
+	MouseY = y;
+	//(Platform::obj->*Platform::mouse)(x, y, leftButtonMouse);
 }
 
 void Platform::HandleMouseButton(GLFWwindow* window, int button, int action, int mod)
 {
-	(Platform::obj->*Platform::mouse)(-1, -1, action);
+	(Platform::obj->*Platform::mouse)(MouseX, MouseY, action);
 
 }
 

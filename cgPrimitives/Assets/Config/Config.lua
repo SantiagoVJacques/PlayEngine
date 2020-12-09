@@ -1,5 +1,5 @@
-ScreenHeight = 1080
-ScreenWidth = 1920
+ScreenHeight = 1024
+ScreenWidth = 1024
 Fullscreen = false
 Name = "Last chance"
 Assets = "assets/"
